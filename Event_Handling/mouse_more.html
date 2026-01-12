@@ -1,0 +1,20 @@
+<div id="box" style="width: 200px; height: 100px; background: lightblue; text-align: center; line-height: 100px;">
+    Hover over me!
+</div>
+<p id="msg"></p>
+
+
+<script>
+    let box = document.getElementById("box");
+    let msg = document.getElementById("msg");
+
+    box.addEventListener("mouseover", () => {
+        msg.innerText = "Mouse is inside the box!";
+        // box.style.background = "lightgreen";
+    });
+
+    box.addEventListener("mouseout", () => {
+        msg.innerText = "Mouse left the box!";
+        // box.style.background = "lightblue";
+    });
+</script>

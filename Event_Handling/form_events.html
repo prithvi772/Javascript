@@ -1,0 +1,53 @@
+<form id="myForm">
+    <input type="text" id="name" placeholder="Enter name">
+    <button type="submit">Submit</button>
+</form>
+<p id="output"></p>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+<p id="p4"></p>
+
+
+<script>
+    let form = document.getElementById("myForm");
+    let nameInput = document.getElementById("name");
+    let output = document.getElementById("output");
+
+    let b=document.getElementById("p1");
+    let c=document.getElementById("p2");
+    let d=document.getElementById("p3");
+    let e=document.getElementById("p4");
+
+    nameInput.addEventListener("focus", () => {
+        b.innerText="Input field is focused";
+    });
+    // nameInput.addEventListener("change",()=>{
+    //     c.innerText="Input changed.";
+
+    // });
+
+    nameInput.addEventListener("change", () => {
+    c.innerText = "Input changed: " + nameInput.value; // Show what was typed
+});
+
+
+    // nameInput.addEventListener("blur", () => {
+    //     console.log("Input field lost focus");
+    // });
+
+    nameInput.addEventListener("blur", () => {
+    d.innerText = "Input field lost focus!";//here if we clicked anywhere outside the input
+                                            //this event will get invoked.
+});
+
+
+    nameInput.addEventListener("input", (e) => {
+        output.innerText = "You are typing: " + e.target.value;
+    });
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevents form from refreshing the page
+        alert("Form submitted!");
+    });
+</script>

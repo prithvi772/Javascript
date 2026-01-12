@@ -1,0 +1,18 @@
+<input type="text" id="input" placeholder="type something bitch"/>
+<p id="p1"></p>
+<p id="p2"></p>
+<script>
+    let input=document.getElementById("input");
+    let b=document.getElementById("p1");
+    let c=document.getElementById("p2");
+
+
+    input.addEventListener("keydown",(e)=>{
+        c.innerText="Key pressed:" + e.key;
+    });
+    input.addEventListener("keyup",function(e){
+        b.innerText="key released:" + e.key;
+    });
+
+
+</script>

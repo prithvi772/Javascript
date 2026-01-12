@@ -1,0 +1,32 @@
+<input type="text" id="input" placeholder="type something bitch"/>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+<p id="p4"></p>
+<script>
+
+
+    let input=document.getElementById("input");
+    let b=document.getElementById("p1");
+    let c=document.getElementById("p2");
+    let d=document.getElementById("p3");
+    let e=document.getElementById("p4");
+
+
+
+    input.addEventListener("mousedown",(e)=>{
+        c.innerText="Jerry got pressed:" ;
+    });
+    input.addEventListener("mouseup",function(e){
+        b.innerText="Jerry got released:";
+    });
+
+    input.addEventListener("mouseover",()=>{
+        d.innerText="Jerry is inside";
+    });
+    input.addEventListener("mouseout",()=>{
+        e.innerText="Jerry is outside.";
+    });
+
+
+</script>
