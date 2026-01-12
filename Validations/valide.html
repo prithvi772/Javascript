@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form">
+      <input id="user" type="text" placeholder="Enter username" /><br />
+      <input id="pass" type="text" placeholder="Enter Password" /><br />
+      <input id="email" type="text" placeholder="Enter Email" /><br />
+
+      <button>Submit</button>
+
+      <p id="p1"></p>
+      <p id="p2"></p>
+      <p id="p3"></p>
+      <p id="p4"></p> 
+
+    </form>
+
+    <script>
+      document.write("Hello, This is a Validation Form.");
+      let form = document.getElementById("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let username = document.getElementById("user");
+        if (username.value == "" || username.value.length < 3) {
+          let a = document.getElementById("p1");
+          a.innerText = "Username cannot be empty and less than 3 character.";
+          a.style.color="red";
+        } else {
+          let b = document.getElementById("p1");
+          b.innerText = "Username ok!!";
+          b.style.color="green";
+        }
+
+        let email = document.getElementById("email");
+        // email.addEventListener("input", (e) => {
+        //   e.preventDefault();
+
+          if (!email.value.includes("@") || !email.value.includes(".")) {
+            let c = document.getElementById("p2");
+            c.innerText = "Invalid email";
+            c.style.color="red";
+          } else {
+            let d = document.getElementById("p2");
+            d.innerText = "Email ok!!";
+            d.style.color="green";
+          }
+
+          let password = document.getElementById("pass");
+          if(password.value.length<5){
+            let e=document.getElementById("p4");
+            e.innerText="Password cannot be less that 5 characters.";
+            e.style.color="red";
+          }
+          else{
+            let f=document.getElementById("p4");
+            f.innerText="Password ok!!";
+            f.style.color="green";
+
+          }
+        
+      });
+    </script>
+  </body>
+</html>

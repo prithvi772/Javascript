@@ -1,0 +1,36 @@
+<form id="userForm">
+    <input type="text" id="username" placeholder="Enter username"><br>
+    <input type="password" id="password" placeholder="Enter password"><br>
+    <button type="submit">Submit</button>
+</form>
+<p id="errorUser" style="color: red;"></p>
+<p id="successUser" style="color: green;"></p>
+
+<script>
+document.getElementById("userForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevents form submission
+
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let errorUser = document.getElementById("errorUser");
+    let successUser = document.getElementById("successUser");
+
+    // Reset messages
+    errorUser.innerText = "";
+    successUser.innerText = "";
+
+    // Username validation: Should not be empty and must be at least 3 characters
+    if (username === "" || username.length < 3) {
+        errorUser.innerText = "Username must be at least 3 characters long!";
+        return;
+    }
+
+    // Password validation: Must be at least 6 characters
+    if (password.length < 6) {
+        errorUser.innerText = "Password must be at least 6 characters long!";
+        return;
+    }
+
+    successUser.innerText = "Username and password are valid!";
+});
+</script>

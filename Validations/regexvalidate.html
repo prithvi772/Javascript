@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form">
+      <input id="username" type="text" placeholder="Enter Username" /><br />
+      <input id="pass" type="password" placeholder="Enter Password" /><br />
+      <input id="email" type="email" placeholder="Enter Email" /><br />
+      <button>Submit</button>
+
+      <p id="p1"></p>
+      <p id="p2"></p>
+      <p id="p3"></p>
+    </form>
+
+    <script>
+        let form=document.getElementById("form");
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+
+            let username=document.getElementById("username");
+            let password=document.getElementById("pass");
+            let email=document.getElementById("email");
+
+            //Username
+
+            let a=document.getElementById("p1");
+            let usernameRegex=/^[a-zA-Z0-9_]{3,}$/;
+
+            if(username.value=="" || username.value.length <3){
+                a.innerText=" Username cannot be empty or less than 3 character";
+                a.style.color="red";
+            }if(usernameRegex.test(username.value)){
+                a.innerText="Username ok!";
+                a.style.color="green";
+            }
+            //prithvigadekar772@gmail.com
+            let b=document.getElementById("p2");
+            let emailRegex=/^[a-zA-Z0-9_]+@[a-z]+\.[a-z]{3,}$/;
+
+            if(!emailRegex.test(email.value)){
+                b.innerText="Invalid email";
+                b.style.color="red";
+            }
+            if(emailRegex.test(email.value)){
+                b.innerText="Email Ok";
+                b.style.color="green";
+            }
+
+            // Password
+            let passwordRegex=/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{4,}$/;
+            
+            if(passwordRegex.test(password.value)){
+
+                c=document.getElementById("p3");
+                c.innerText="Password ok!!";
+                c.style.color="green";
+            }
+            if(!passwordRegex.test(password.value)){
+
+                c=document.getElementById("p3");
+                c.innerText="Invalid password!!";
+                c.style.color="red";
+            }
+        });
+            //Password
+           /* Breakdown:
+^ → Start of the string
+(?=.*[A-Za-z]) → At least one letter (uppercase or lowercase) must be present
+(?= ... ) is a positive lookahead, ensuring that at least one letter is found anywhere in the string
+[A-Za-z] matches any uppercase (A-Z) or lowercase (a-z) letter
+(?=.*\d) → At least one digit (0-9) must be present
+\d is a shortcut for [0-9], ensuring at least one digit exists
+[A-Za-z\d]{5,}$ → The password must be at least 5 characters long and only contain letters (A-Z, a-z) and digits (0-9)
+{5,} → At least 5 characters, no upper limit
+$ → End of the string
+Valid Examples:
+✅ "abc12" (contains letters + numbers, min 5 chars)
+✅ "A1b2C" (mix of uppercase/lowercase + digits)
+✅ "hello1" (letters + at least one number, min length met)
+
+Invalid Examples:
+❌ "12345" (only digits, no letters)
+❌ "abcde" (only letters, no digits)
+❌ "ab12" (less than 5 characters)
+
+What This Regex Ensures:
+✅ At least one letter (A-Z or a-z)
+✅ At least one digit (0-9)
+✅ Minimum length of 5 characters
+❌ No special characters (!@#$%^&*) are allowed*/
+
+
+
+        
+    </script>
+  </body>
+</html>

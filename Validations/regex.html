@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation with RegEx</title>
+</head>
+<body>
+    <form id="form">
+        <input id="user" type="text" placeholder="Enter username" /><br />
+        <input id="pass" type="text" placeholder="Enter Password" /><br />
+        <input id="email" type="text" placeholder="Enter Email" /><br />
+        <button type="submit">Submit</button>
+
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+    </form>
+
+    <script>
+        let form = document.getElementById("form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let username = document.getElementById("user").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("pass").value;
+
+            let usernameError = document.getElementById("p1");
+            let emailError = document.getElementById("p2");
+            let passwordError = document.getElementById("p3");
+
+            // Regular Expressions
+            let usernameRegex = /^[a-zA-Z0-9_]{3,}$/; // At least 3 characters, letters, numbers, and underscore allowed
+            let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Standard email format
+            let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/; // At least 5 characters, with one letter and one number
+
+            // Username validation
+            if (!usernameRegex.test(username)) {
+                usernameError.innerText = "Username must be at least 3 characters long (letters, numbers, _ allowed).";
+                usernameError.style.color = "red";
+            } else {
+                usernameError.innerText = "Username OK!";
+                usernameError.style.color = "green";
+            }
+
+            // Email validation
+            if (!emailRegex.test(email)) {
+                emailError.innerText = "Invalid email format.";
+                emailError.style.color = "red";
+            } else {
+                emailError.innerText = "Email OK!";
+                emailError.style.color = "green";
+            }
+
+            // Password validation
+            if (!passwordRegex.test(password)) {
+                passwordError.innerText = "Password must be at least 5 characters with one letter and one number.";
+                passwordError.style.color = "red";
+            } else {
+                passwordError.innerText = "Password OK!";
+                passwordError.style.color = "green";
+            }
+        });
+    </script>
+</body>
+</html>
