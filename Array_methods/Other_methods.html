@@ -1,0 +1,51 @@
+1. 🔢 sort() – Sorts the array as strings by default
+✅ Example (Default):
+
+let fruits = ["Banana", "Apple", "Mango"];
+fruits.sort();
+console.log(fruits);  // [ 'Apple', 'Banana', 'Mango' ]
+⚠️ For numbers – You must provide a compare function:
+
+let numbers = [5, 10, 2, 30];
+numbers.sort();       // WRONG: [10, 2, 30, 5] (sorted as strings)
+numbers.sort((a, b) => a - b);  // RIGHT: [2, 5, 10, 30]
+2. 🔄 reverse() – Reverses the array in-place
+✅ Example:
+
+let items = [1, 2, 3, 4];
+items.reverse();
+console.log(items);  // [4, 3, 2, 1]
+You can even combine with sort:
+
+
+let names = ["Zara", "Ankit", "Meena"];
+names.sort().reverse();  // Reverse alphabetical order
+console.log(names);      // [ 'Zara', 'Meena', 'Ankit' ]
+
+3. 🔗 join() – Converts array to a string
+✅ Example:
+
+let words = ["I", "love", "JavaScript"];
+let sentence = words.join(" ");
+console.log(sentence);  // "I love JavaScript"
+You can use any separator:
+words.join("-"); // "I-love-JavaScript"
+
+
+4. ➕ concat() – Merges arrays into a new array
+✅ Example:
+
+let a = [1, 2];
+let b = [3, 4];
+let merged = a.concat(b);
+console.log(merged);  // [1, 2, 3, 4]
+Does not change original arrays:
+
+
+console.log(a); // [1, 2]
+console.log(b); // [3, 4]
+You can chain:
+
+
+let all = a.concat(b, [5, 6], "done");
+console.log(all); // [1, 2, 3, 4, 5, 6, "done"]

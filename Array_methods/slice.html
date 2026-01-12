@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let fruits = ["Apple", "Banana", "Mango", "Orange", "Grapes"];
+
+      // Get elements from index 1 to 3 (not including 3)
+      let result = fruits.slice(1, 3);
+
+      console.log(result); // [ 'Banana', 'Mango' ]
+      console.log(fruits); // [ 'Apple', 'Banana', 'Mango', 'Orange', 'Grapes' ] ← Original unchanged
+
+      fruits.slice(2); // From index 2 to end
+      // Output: ["Mango", "Orange", "Grapes"]
+
+      fruits.slice(-2); // Last 2 elements
+      // Output: ["Orange", "Grapes"]
+    </script>
+  </body>
+</html>
+🔪 slice() – Think of it as “cutting” a part of an array (non-destructive) 📌
+Syntax array.slice(startIndex, endIndex) startIndex: The index to start copying
+from (inclusive) endIndex: The index to stop copying (exclusive) It does not
+change the original array. It returns a new array.
