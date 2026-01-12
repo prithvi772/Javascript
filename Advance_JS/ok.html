@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini JSON Fetch Task</title>
+  <style>
+    table {
+      width: 60%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid black;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">User List</h2>
+  <table id="userTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Users will be inserted here -->
+    </tbody>
+  </table>
+
+  <script>
+    // Step 1: Fetch data from the API
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => response.json()) // Step 2: Convert to JS object
+      .then(data => {
+        const tbody = document.querySelector("#userTable tbody");
+        let rows = "";
+
+        // Step 3: Loop through each user
+        data.forEach(user => {
+          rows += `
+            <tr>
+              <td>${user.name}</td>
+              <td>${user.email}</td>
+              <td>${user.address.city}</td>
+            </tr>
+          `;
+        });
+
+        // Step 4: Add rows to the table
+        tbody.innerHTML = rows;
+      });
+  </script>
+</body>
+</html>

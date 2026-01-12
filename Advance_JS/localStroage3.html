@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let fruits = {
+        Papaya: 12,
+        Apples: 10,
+        Mongo: 5,
+      };
+      let a = localStorage.setItem("Fruits", JSON.stringify(fruits));
+      // let b=JSON.parse(localStorage.getItem("a"));This is wrong.
+      let b = JSON.parse(localStorage.getItem("Fruits"));
+      console.log("Papaya:" + b.Papaya);
+    </script>
+  </body>
+</html>
+Exactly! ✅ To summarize clearly: localStorage.setItem("key", value) → saves the
+data with "key" localStorage.getItem("key") → retrieves it using the same key So
+always match the key name in both setItem and getItem.

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoList</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      .myborder {
+        border: 3px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="text-center text-danger">ToDo App</h1>
+    <div class="text-center">
+      Enter ToDo: <input type="text" name="" size="30" id="" />
+      <button class="btn btn-primary btn-add">Add</button>
+      <button class="btn btn-primary btn-cancel">Cancel</button>
+    </div>
+    <div class="message text-center text-danger"></div>
+    <!-- container begins -->
+    <div class="container"></div>
+    <!-- container ends -->
+    <script>
+      let toDoList = []; // = [];
+      let eleInput = document.querySelector("input[type='text']");
+      let eleMessage = document.querySelector(".message");
+      let eleBtnAddModify = document.querySelector(".btn-add");
+      let eleBtnCancel = document.querySelector(".btn-cancel");
+      let recordNo, mode="add";
+      // get data from localstorage
+      toDoList = window.localStorage.getItem("list");
+      if (toDoList == null) {
+        //first day-first time
+        toDoList = [];
+      } else {
+        //other time
+        toDoList = JSON.parse(toDoList);
+      }
+      displayList();
+      function displayList() {
+        let html = "";
+        for (let i = 0; i < toDoList.length; i++) {
+          let e = toDoList[i];
+          html += `
+    <div class="row bg-primary text-white mx-auto w-50 p-2 my-2">
+        <div class="col-2">${i + 1}.</div>
+        <div class="col-8">${e}</div>
+        <div class="col-1">
+          <button class="btn btn-danger btn-edit">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+        </div>
+        <div class="col-1">
+          <button class="btn btn-danger btn-delete">
+            <i class="bi bi-trash3-fill"></i>
+          </button>
+        </div>
+      </div>
+    `;
+        } //for
+        document.querySelector(".container").innerHTML = html;
+        // add the event listeners now
+        addEL();
+      } //function
+      function addEL() {
+        document.querySelectorAll(".btn-delete").forEach((e, index) => {
+          e.addEventListener("click", (event) => {
+            recordNo = index;
+            action = "delete";
+            performAction();
+          });
+        });
+        document.querySelectorAll(".btn-edit").forEach((e, index) => {
+          e.addEventListener("click", () => {
+            console.log(index);
+            recordNo = index;
+            mode = "edit";
+            setMode();
+          });
+        });
+      }
+      function setMode() {
+        if (mode == "edit") {
+          eleBtnAddModify.innerHTML = "Modify";
+          eleInput.value = toDoList[recordNo];
+        } else if (mode == "add") {
+          eleBtnAddModify.innerHTML = "Add";
+          eleInput.value = "";
+        } else if ((mode = "delete")) {
+        }
+      }
+      function performAction() {
+        if (action == "add") {
+        } else if (action == "delete") {
+          console.log(recordNo);
+          let ans = window.confirm("Do you really want to delete this data");
+          if (ans) {
+            // delete the element which is at position = recordNo
+            toDoList.splice(recordNo, 1);
+            displayList();
+            showMessage("Delete operation successful");
+            updateLocalStorage();
+          } else {
+            showMessage("Delete operation cancelled");
+          }
+        } else if (action == "edit") {
+        }
+      }
+      eleBtnCancel.addEventListener("click", () => {
+        console.log("......" + mode);
+
+        if (mode == "edit") {
+          mode = "add";
+          setMode();
+        }
+      });
+      eleBtnAddModify.addEventListener("click", () => {
+        // read the user's input
+        if (mode == "add") {
+          let toDo = eleInput.value;
+          console.log(toDo);
+          // check its length
+          if (toDo.trim().length < 4) {
+            showMessage("Sorry... minimum 4 characters required.");
+          } else {
+            toDoList.push(toDo);
+            showMessage("Add operation successful");
+            clearInput();
+            displayList();
+            updateLocalStorage();
+          }
+        } //...add
+        else if (mode == "edit") {
+          console.log("Record Number is " + recordNo);
+          let todo=eleInput.value;
+          toDoList.splice(recordNo,1,todo);
+          updateLocalStorage();
+          displayList();
+          showMessage("Edit operation successful");
+          mode="add";
+          setMode();
+        }
+      });
+      function updateLocalStorage() {
+        window.localStorage.setItem("list", JSON.stringify(toDoList));
+      }
+      function showMessage(message) {
+        eleMessage.innerHTML = message;
+        window.setTimeout(() => {
+          eleMessage.innerHTML = "";
+        }, 3000);
+      }
+      function clearInput() {
+        eleInput.value = "";
+      }
+    </script>
+  </body>
+</html>

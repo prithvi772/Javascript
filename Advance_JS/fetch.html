@@ -1,0 +1,26 @@
+
+<html>
+<head>
+  <title>Fetch API Example</title>
+</head>
+<body>
+
+<h2>Fetch User Data</h2>
+<button onclick="getUser()">Get User</button>
+<p id="output"></p>
+
+<script>
+  function getUser() {
+    fetch('https://jsonplaceholder.typicode.com/users/1') // Fetch data from API
+      .then(response => response.json())                  // Convert response to JSON
+      .then(data => {
+        document.getElementById('output').innerText = 'User Name: ' + data.name;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let user = {
+        name: "Prithvi",
+        age: 21,
+        Department: "Mca",
+      };
+      let j = JSON.stringify(user);
+
+      let a = localStorage.setItem("userInfo", j);
+
+      let c = localStorage.getItem("userInfo");
+      console.log("Got items after using getItem for localstorage:");
+      console.log(c);
+      let b = JSON.parse(j);
+      console.log("Parsed into objects:");
+      console.log(b);
+      console.log("name is " + b.name);
+    </script>
+  </body>
+</html>
