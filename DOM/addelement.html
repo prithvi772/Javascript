@@ -1,0 +1,36 @@
+<!-- <ul id="list"></ul>
+<button onclick="AddItem()">Add item</button>
+<script>
+    function AddItem(){
+        let li =document.createElement("li");
+        li.innerText="Fruits";
+        // document.getElementById("list").setAttribute("style","list-style:none","text-decoration:none");
+        
+        document.getElementById("list").append("Added item:",li);
+        
+        alert("Item added to cart.");
+    }
+</script> -->
+<!-- ❌ Issues in Your Code
+Wrong use of append()
+
+append("Added item:", li); adds "Added item:" as text before the <li>, but this is not how lists work.
+Instead, we should append only the li element, so the list structure remains valid.
+No prevention for duplicate items
+
+Every time you click, "Fruits" is added again. We can fix this if needed. -->
+
+<ul id="list"></ul>
+<button onclick="AddItem()">Add item</button>
+
+<script>
+    let a=document.querySelector("#list");
+    function AddItem() {
+        let li = document.createElement("li"); // Create <li> element
+        li.innerText = "Fruits"; // Set text content
+
+        a.appendChild(li); // Append <li> correctly
+
+        alert("Item added to cart.");
+    }
+</script>

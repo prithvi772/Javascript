@@ -1,0 +1,27 @@
+<!-- <p id="hi">This is prithvi.</p>
+<button onclick="remove()">remove item</button>
+<script>
+    function remove(){
+
+        document.getElementById("hi").remove();
+        alert("Item removed.");
+    }
+    
+</script> -->
+<div id="hello">
+<p id="hey">This is prithvi.</p>
+<p id="hi">This is Gadekar.</p>
+</div>
+<button onclick="remove()">remove item</button>
+<script>
+    function remove(){
+        let a=document.getElementById("hello");
+        let b=document.getElementById("hi");
+        // a.removeChild(b);
+        // alert("Item removed.");
+        b.remove();
+    }
+    console.log(document.documentElement); // Returns the <html> element
+
+    
+</script>

@@ -1,0 +1,9 @@
+<a id="hi" href="hs://www.google.com">Google</a>
+<button onclick="showhref()">get href</button>
+<script>
+    function showhref(){
+        let a=document.getElementById("hi");
+        let b=a.getAttribute("href");
+        alert("The link is :"+b);
+    }
+</script>
